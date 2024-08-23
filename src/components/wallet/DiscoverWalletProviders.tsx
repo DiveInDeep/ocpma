@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useSyncProviders } from "../hooks/useSyncProviders";
-import { formatAddress } from "../utils";
+import { useSyncProviders } from "../../hooks/useSyncProviders";
+import { formatAddress } from "../../utils";
+import Image from "next/image";
 
 export const DiscoverWalletProviders = () => {
   const [selectedWallet, setSelectedWallet] = useState<EIP6963ProviderDetail>();
@@ -33,7 +34,15 @@ export const DiscoverWalletProviders = () => {
               key={provider.info.uuid}
               onClick={() => handleConnect(provider)}
             >
-              <img src={provider.info.icon} alt={provider.info.name} />
+              <Image
+                src={provider.info.icon}
+                alt={provider.info.name}
+                width={50}
+                height={100}
+                // style={{
+                //   objectFit: "cover", 
+                // }}
+              />
               <div>{provider.info.name}</div>
             </button>
           ))
@@ -46,9 +55,11 @@ export const DiscoverWalletProviders = () => {
       {userAccount && (
         <div>
           <div>
-            <img
-              src={selectedWallet?.info.icon}
-              alt={selectedWallet?.info.name}
+            <Image
+              src={selectedWallet?.info.icon || ""}
+              alt={selectedWallet?.info.name || ""}
+              width={50}
+              height={10}
             />
             <div>{selectedWallet?.info.name}</div>
             <div>({formatAddress(userAccount)})</div>
