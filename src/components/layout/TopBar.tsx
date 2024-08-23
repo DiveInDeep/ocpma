@@ -1,11 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import { DiscoverWalletProviders } from "../wallet/DiscoverWalletProviders";
 import { ModeToggle } from "../custom/ModeToggle";
 import WalletConnectBtn from "../wallet/WalletConnectBtn";
+import { useTheme } from "next-themes";
+import { useWalletProvider } from "@/hooks/useWalletProvider";
+import WalletInfoBtn from "../wallet/WalletInfoBtn";
 
 const TopBar = () => {
+  const { theme } = useTheme();
+  const { selectedAccount } = useWalletProvider();
   return (
-    <div className="flex justify-between items-center p-4 bg-[#181C1D] border-b border-[#32383d]">
+    <div
+      className={`flex justify-between items-center p-4 bg-[${
+        theme === "dark" ? "#32383d" : "#F7F7F8"
+      }] border-b border-[${theme === "dark" ? "#32383d" : "#F7F7F8"}]`}
+    >
       <div className="flex items-center gap-2">
         <Image
           src={"/logo.png"}
@@ -20,7 +31,7 @@ const TopBar = () => {
         </div>
       </div>
       <div className="flex justify-between gap-2 items-center">
-        <WalletConnectBtn />
+        {!selectedAccount ? <WalletConnectBtn /> : <WalletInfoBtn />}
         <ModeToggle />
       </div>
     </div>

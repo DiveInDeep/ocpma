@@ -4,7 +4,8 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 
-import { ThemeProvider } from "@/hooks/ThemeProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { WalletProvider } from "@/providers/WalletProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -32,7 +33,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <WalletProvider>{children}</WalletProvider>
         </ThemeProvider>
       </body>
     </html>

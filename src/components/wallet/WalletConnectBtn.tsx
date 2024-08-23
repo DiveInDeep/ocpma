@@ -13,7 +13,7 @@ const WalletConnectBtn = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Connect Wallet</Button>
+        <div className="rounded-xl p-3 mainThemeColor font-bold text-white">Connect Wallet</div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -21,7 +21,7 @@ const WalletConnectBtn = () => {
             <span className="text-xl">Connect Wallet</span>
           </DialogTitle>
           <DialogDescription>
-            <DiscoverWalletProviders />
+            {/* <DiscoverWalletProviders /> */}
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

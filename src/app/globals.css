@@ -67,3 +67,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.mainThemeColor {
+  background-color: #7651FD
+}
+
+.mainThemeColor:hover {
+  background-color:rgba(118, 81, 253, 0.8)
+}
