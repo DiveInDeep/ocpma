@@ -21,7 +21,7 @@ const WalletConnectBtn = () => {
             <span className="text-xl">Connect Wallet</span>
           </DialogTitle>
           <DialogDescription>
-            {/* <DiscoverWalletProviders /> */}
+            <DiscoverWalletProviders />
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

@@ -1,71 +1,47 @@
 "use client";
-import { useState } from "react";
-import { useSyncProviders } from "../../hooks/useSyncProviders";
-import { formatAddress } from "../../utils";
-import Image from "next/image";
+import { useWalletProvider } from "@/hooks/useWalletProvider";
+import { formatAddress } from "@/utils";
+import WalletList from "./WalletList";
+import { Frown } from "lucide-react";
 
 export const DiscoverWalletProviders = () => {
-  const [selectedWallet, setSelectedWallet] = useState<EIP6963ProviderDetail>();
-  const [userAccount, setUserAccount] = useState<string>("");
-  const providers = useSyncProviders();
+  const { wallets, connectWallet } = useWalletProvider();
 
-  // Connect to the selected provider using eth_requestAccounts.
-  const handleConnect = async (providerWithInfo: EIP6963ProviderDetail) => {
-    try {
-      const accounts = await providerWithInfo.provider.request({
-        method: "eth_requestAccounts",
-      });
-
-      setSelectedWallet(providerWithInfo);
-      setUserAccount(accounts?.[0]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // Display detected providers as connect buttons.
   return (
     <>
-      <h2>Wallets Detected:</h2>
-      <div>
-        {providers.length > 0 ? (
-          providers?.map((provider: EIP6963ProviderDetail) => (
-            <button
-              key={provider.info.uuid}
-              onClick={() => handleConnect(provider)}
-            >
-              <Image
-                src={provider.info.icon}
-                alt={provider.info.name}
-                width={50}
-                height={100}
-                // style={{
-                //   objectFit: "cover", 
-                // }}
-              />
-              <div>{provider.info.name}</div>
-            </button>
-          ))
+      <div className="m-2">
+        {Object.keys(wallets).length === 0 ? (
+          <h2>No wallet detected:</h2>
         ) : (
-          <div>No Announced Wallet Providers</div>
+          <h2>Wallets Detected:</h2>
         )}
       </div>
-      <hr />
-      <h2>{userAccount ? "" : "No "}Wallet Selected</h2>
-      {userAccount && (
-        <div>
-          <div>
-            <Image
-              src={selectedWallet?.info.icon || ""}
-              alt={selectedWallet?.info.name || ""}
-              width={50}
-              height={10}
+      <div>
+        {Object.keys(wallets).length > 0 ? (
+          Object.values(wallets).map((provider: EIP6963ProviderDetail) => (
+            <WalletList
+              key={provider.info.uuid}
+              onClick={() => connectWallet(provider.info.rdns)}
+              img={provider.info.icon}
+              alt={provider.info.name}
+              name={provider.info.name}
             />
-            <div>{selectedWallet?.info.name}</div>
-            <div>({formatAddress(userAccount)})</div>
+          ))
+        ) : (
+          <div
+            className="border rounded-xl flex p-4 gap-2 m-4 hover:bg-slate-700 cursor-pointer"
+            onClick={() =>
+              window.open(
+                "https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",
+                "_blank"
+              )
+            }
+          >
+            <Frown />
+            There are no wallet detected!
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };
