@@ -1,11 +1,12 @@
 "use client";
 import { useWalletProvider } from "@/hooks/useWalletProvider";
-import { formatAddress } from "@/utils";
 import WalletList from "./WalletList";
 import { Frown } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export const DiscoverWalletProviders = () => {
   const { wallets, connectWallet } = useWalletProvider();
+  const { theme } = useTheme();
 
   return (
     <>
@@ -29,7 +30,9 @@ export const DiscoverWalletProviders = () => {
           ))
         ) : (
           <div
-            className="border rounded-xl flex p-4 gap-2 m-4 hover:bg-slate-700 cursor-pointer"
+            className={`border rounded-xl flex p-4 gap-2 m-4 ${
+              theme === "dark" ? "hover:bg-[#242A2D]" : "hover:bg-[#D3D3D3]"
+            } cursor-pointer`}
             onClick={() =>
               window.open(
                 "https://chromewebstore.google.com/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn",

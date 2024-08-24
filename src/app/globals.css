@@ -69,9 +69,9 @@
 }
 
 .mainThemeColor {
-  background-color: #7651FD
+  background-color: #7651fd;
 }
 
 .mainThemeColor:hover {
-  background-color:rgba(118, 81, 253, 0.8)
+  background-color: rgba(118, 81, 253, 0.8);
 }

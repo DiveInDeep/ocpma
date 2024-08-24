@@ -7,7 +7,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DiscoverWalletProviders } from "./DiscoverWalletProviders";
-import { Button } from "../ui/button";
 
 const WalletConnectBtn = () => {
   return (
