@@ -34,3 +34,8 @@ interface EIP1193Provider {
     params?: Array<any>
   }) => Promise<any>
 }
+
+interface WalletError {
+  code?: string
+  message?: string
+}

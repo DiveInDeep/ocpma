@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import toast from "react-hot-toast";
 
 type SelectedAccountByWallet = Record<string, string | null>;
 
@@ -14,10 +15,8 @@ interface WalletProviderContext {
   wallets: Record<string, EIP6963ProviderDetail>; // Record of wallets by UUID
   selectedWallet: EIP6963ProviderDetail | null; // Currently selected wallet
   selectedAccount: string | null; // Account address of selected wallet
-  errorMessage: string | null; // Error message
   connectWallet: (walletUuid: string) => Promise<void>; // Function to trigger wallet connection
   disconnectWallet: () => void; // Function to trigger wallet disconnection
-  clearError: () => void; // Function to clear error message
 }
 
 declare global {
@@ -40,9 +39,6 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [selectedAccountByWalletRdns, setSelectedAccountByWalletRdns] =
     useState<SelectedAccountByWallet>({});
 
-  const [errorMessage, setErrorMessage] = useState("");
-  const clearError = () => setErrorMessage("");
-  const setError = (error: string) => setErrorMessage(error);
 
   useEffect(() => {
     const savedSelectedWalletRdns = localStorage.getItem("selectedWalletRdns");
@@ -103,8 +99,8 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
         }
       } catch (error) {
         console.error("Failed to connect to provider:", error);
-        // const walletError: WalletError = error as WalletError
-        // setError(`Code: ${walletError.code} \nError Message: ${walletError.message}`)
+        const walletError: WalletError = error as WalletError
+        toast.error(`Code: ${walletError.code} \nError Message: ${walletError.message}`)
       }
     },
     [wallets, selectedAccountByWalletRdns]
@@ -128,6 +124,8 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
         });
       } catch (error) {
         console.error("Failed to revoke permissions:", error);
+        const walletError: WalletError = error as WalletError
+        toast.error(`Code: ${walletError.code} \nError Message: ${walletError.message}`)
       }
     }
   }, [selectedWalletRdns, wallets]);
@@ -140,10 +138,8 @@ export const WalletProvider: React.FC<PropsWithChildren> = ({ children }) => {
       selectedWalletRdns === null
         ? null
         : selectedAccountByWalletRdns[selectedWalletRdns],
-    errorMessage,
     connectWallet,
     disconnectWallet,
-    clearError,
   };
 
   return (

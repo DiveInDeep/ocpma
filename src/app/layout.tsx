@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { WalletProvider } from "@/providers/WalletProvider";
+import ToasterProvider from "@/providers/ToasterProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -33,7 +34,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <WalletProvider>{children}</WalletProvider>
+          <WalletProvider>
+            <ToasterProvider />
+            {children}
+          </WalletProvider>
         </ThemeProvider>
       </body>
     </html>
