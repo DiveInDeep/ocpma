@@ -21,8 +21,10 @@
     "react-blockies": "^1.4.1",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "sass": "^1.77.8",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "web3": "^4.12.1"
   },
   "devDependencies": {
     "@types/node": "^20",

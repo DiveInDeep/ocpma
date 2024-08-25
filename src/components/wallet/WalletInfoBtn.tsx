@@ -12,15 +12,15 @@ import { useWalletProvider } from "@/hooks/useWalletProvider";
 import Blockies from "react-blockies";
 import { formatAddress } from "@/utils";
 import { LogOut, Triangle } from "lucide-react";
-import { useTheme } from "next-themes";
 
 const WalletInfoBtn = () => {
   const { selectedAccount, disconnectWallet } = useWalletProvider();
-  const { theme } = useTheme();
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className={`flex rounded-xl p-3 font-bold text-${theme === "dark" ? 'white' : 'black'} border gap-4 items-center`}>
+        <DropdownMenuTrigger
+          className={`flex rounded-xl p-3 font-bold text-[var(--text-pure)] border gap-4 items-center`}
+        >
           <Blockies
             seed="Jeremy"
             size={10}

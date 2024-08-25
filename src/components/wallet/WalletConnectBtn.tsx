@@ -12,16 +12,18 @@ const WalletConnectBtn = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="rounded-xl p-3 mainThemeColor font-bold text-white">Connect Wallet</div>
+        <div className="rounded-xl p-3 mainThemeColor font-bold text-white">
+          Connect Wallet
+        </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            <span className="text-xl">Connect Wallet</span>
           </DialogTitle>
           <DialogDescription>
-            <DiscoverWalletProviders />
           </DialogDescription>
+            <span className="text-xl">Connect Wallet</span>
+            <DiscoverWalletProviders />
         </DialogHeader>
       </DialogContent>
     </Dialog>

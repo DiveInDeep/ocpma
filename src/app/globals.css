@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d2d2d2;
+  background-image: repeating-linear-gradient(
+      to right,
+      transparent 0 100px,
+      #25283b22 100px 101px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 100px,
+      #25283b22 100px 101px
+    );
+}
+
+body::before {
+  position: absolute;
+  width: min(1400px, 90vw);
+  top: 10%;
+  left: 50%;
+  height: 90%;
+  transform: translateX(-50%);
+  content: "";
+  background-image: url("/bg.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  pointer-events: none;
+  background-color: white;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -29,6 +65,10 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --topBar-bg-theme: #f7f7f8;
+    --topBar-border-color: #32383d;
+    --card-bg-theme: #d3d3d3;
+    --text-pure: #000000;
   }
 
   .dark {
@@ -56,6 +96,10 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --topBar-bg-theme: #32383d;
+    --topBar-border-color: #f7f7f8;
+    --card-bg-theme: #242a2d;
+    --text-pure: #ffffff;
   }
 }
 

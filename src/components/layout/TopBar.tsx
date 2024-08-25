@@ -3,19 +3,17 @@
 import Image from "next/image";
 import { ModeToggle } from "../custom/ModeToggle";
 import WalletConnectBtn from "../wallet/WalletConnectBtn";
-import { useTheme } from "next-themes";
 import { useWalletProvider } from "@/hooks/useWalletProvider";
 import WalletInfoBtn from "../wallet/WalletInfoBtn";
 import Link from "next/link";
 
 const TopBar = () => {
-  const { theme } = useTheme();
   const { selectedAccount } = useWalletProvider();
+  
   return (
     <div
-      className={`flex justify-between items-center p-4 bg-[${
-        theme === "dark" ? "#32383d" : "#F7F7F8"
-      }] border-b border-[${theme === "dark" ? "#32383d" : "#F7F7F8"}]`}
+      className={`flex justify-between items-center p-4 bg-[var(--topBar-bg-theme)] border-b  border-[var(--topBar-border-color)]`}
+      suppressHydrationWarning
     >
       <Link href={"/"}>
         <div className="flex items-center gap-2 cursor-pointer select-none">
