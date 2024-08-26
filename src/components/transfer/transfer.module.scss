@@ -1,0 +1,24 @@
+.container {
+  z-index: 999;
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
+  background-color: var(--topBar-bg-theme);
+  border: 1px solid white;
+  padding: 8px;
+  border-radius: 8px;
+  &:hover {
+    background-color:rgba(247, 247, 248, .5);
+  }
+}
+
+.formContainer {
+  input {
+    background-color: transparent;
+    padding: 8px;
+    border: 1px solid  var(--topBar-border-color);
+    margin: 4px 0px;
+    border-radius: 4px;
+  }
+ }
