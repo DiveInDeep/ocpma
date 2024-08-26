@@ -12,7 +12,7 @@ const TopBar = () => {
   
   return (
     <div
-      className={`flex justify-between items-center p-4 bg-[var(--topBar-bg-theme)] border-b  border-[var(--topBar-border-color)]`}
+      className={`flex justify-between items-center p-4 bg-[var(--topBar-bg-theme)] `}
       suppressHydrationWarning
     >
       <Link href={"/"}>
